@@ -1,15 +1,7 @@
-# Basic Sample Hardhat Project
+# GAMIC Blockchain
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+## To get started
+1. Install dependencies: ``npm ci``
+2. Compile contract: ``npx hardhat compile``
+3. Start blockchain: ``npx hardhat node``
+4. Deploy contract: ``npx hardhat run scripts/sample-script.js --network localhost``
