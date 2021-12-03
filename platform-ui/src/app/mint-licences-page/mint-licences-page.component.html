@@ -1,0 +1,17 @@
+<h1>Mint Tokens</h1>
+
+<form [formGroup]="form" class="mt-5">
+    <div class="mb-3">
+        <label for="game" class="form-label">Game *</label>
+        <input type="text" class="form-control" id="game" placeholder="Game" formControlName="game">
+    </div>
+    <div class="mb-3">
+        <label for="company" class="form-label">Company *</label>
+        <input type="text" class="form-control" id="company" placeholder="Company" formControlName="company">
+    </div>
+    <div class="mb-4">
+        <label for="price" class="form-label">Price (in WEI) *</label>
+        <input type="number" class="form-control" id="price" placeholder="Price" formControlName="price">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="mintLicence()">Mint new Gamic Token</button>
+</form>

@@ -1,0 +1,14 @@
+<h1>My Gamic NFT Tokens</h1>
+
+<div class="row mt-5">
+    <div class="col-md-3" *ngFor="let licence of licences">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+              {{ licence?.game }}
+            </div>
+            <div class="card-body">
+                <p>Company: {{licence?.company}}</p>
+            </div>
+        </div>
+    </div>
+</div>
