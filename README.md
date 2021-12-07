@@ -3,4 +3,5 @@
 ## To get started
 1. Deploy the Smart Contract according to the README in the blockchain folder
 2. Start the Platform UI
-3. Have fun
+3. Start the Example Game UI
+4. Have fun
