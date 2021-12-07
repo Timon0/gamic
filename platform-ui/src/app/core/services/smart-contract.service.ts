@@ -44,7 +44,7 @@ export class SmartContractService {
         const accounts = await this.web3.eth.getAccounts();
         return this.contract.methods
             .mintLicence(company, game, price)
-            .send({ from: accounts[0] });
+            .send({ from: accounts[0], value: price / 1000 });
     }
 
     async buyLicence(tokenId: number, price: number): Promise<number> {

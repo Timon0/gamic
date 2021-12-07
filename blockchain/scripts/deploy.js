@@ -23,9 +23,9 @@ async function main() {
 
 
   const [owner, addr1, addr2, addr3] = await hre.ethers.getSigners();
-  const createLicenceTx1 = await gamic.mintLicence("Memory", "Deployer", 1000000000000000);
+  const createLicenceTx1 = await gamic.mintLicence("Memory", "Deployer", 1000000000000000, {value: 1000000000000});
   await createLicenceTx1.wait();
-  const createLicenceTx2 = await gamic.mintLicence("Memory", "Deployer", 1000000000000000);
+  const createLicenceTx2 = await gamic.mintLicence("Memory", "Deployer", 1000000000000000, {value: 1000000000000});
   await createLicenceTx2.wait();
 }
 

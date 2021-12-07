@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 struct Licence {
     uint256 tokenId;
@@ -11,7 +12,7 @@ struct Licence {
     address creator;
 }
 
-contract Gamic is ERC721 {
+contract Gamic is ERC721, Ownable {
     uint256 private tokenCounter;
 
     mapping(uint256 => string) private games;
@@ -31,17 +32,23 @@ contract Gamic is ERC721 {
         address seller = ownerOf(tokenId);
         _safeTransfer(seller, msg.sender, tokenId, "");
         prices[tokenId] = 0; // not for sale anymore
-        payable(seller).transfer(msg.value);
+        payable(seller).transfer(msg.value - (msg.value/50)); // transfer 98% to seller
+        payable(owner()).transfer(msg.value/50); // transfer 2% to owner of the smart contract
     }
 
-    function mintLicence(string memory game, string memory company, uint256 price) public returns (uint256) {
+    function mintLicence(string memory game, string memory company, uint256 price) public payable returns (uint256) {
+        require(msg.value == price/1000, 'Incorrect value');
+
         uint256 newTokenId = tokenCounter;
         _safeMint(msg.sender, newTokenId);
+        payable(owner()).transfer(msg.value); // transfer 1 ‰ to owner of the smart contract
+
         games[newTokenId] = game;
         companies[newTokenId] = company;
         prices[newTokenId] = price;
         creator[newTokenId] = msg.sender;
         tokenCounter = tokenCounter + 1;
+
         return newTokenId;
     }
 

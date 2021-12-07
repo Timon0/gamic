@@ -9,11 +9,11 @@ describe("Gamic", function () {
         await gamic.deployed();
 
         // mint 3 Tokens
-        const createLicenceTx1 = await gamic.mintLicence("MyGame_0", "Company", 1000000000000000);
+        const createLicenceTx1 = await gamic.mintLicence("MyGame_0", "Company", 1000000000000000, {value: 1000000000000});
         await createLicenceTx1.wait();
-        const createLicenceTx2 = await gamic.mintLicence("MyGame_1", "Company", 1000000000000000);
+        const createLicenceTx2 = await gamic.mintLicence("MyGame_1", "Company", 1000000000000000, {value: 1000000000000});
         await createLicenceTx2.wait();
-        const createLicenceTx3 = await gamic.mintLicence("MyGame_2", "Company", 1000000000000000);
+        const createLicenceTx3 = await gamic.mintLicence("MyGame_2", "Company", 1000000000000000, {value: 1000000000000});
         await createLicenceTx3.wait();
 
         // Transfer Token 1 from owner to address 1
@@ -29,5 +29,6 @@ describe("Gamic", function () {
         const licencesOfAddr2 = await gamic.getLicesncesOfAddress(addr2.address);
         expect(licencesOfAddr2.length).to.equal(1);
         expect(licencesOfAddr2[0].tokenId).to.equal(2);
+
     });
 });
