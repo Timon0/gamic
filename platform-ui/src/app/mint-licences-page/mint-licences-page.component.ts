@@ -8,19 +8,21 @@ import { SmartContractService } from '../core/services/smart-contract.service';
     styleUrls: ['./mint-licences-page.component.scss'],
 })
 export class MintLicencesPageComponent {
-
     form: FormGroup;
 
-    constructor(private smartContract: SmartContractService, private formBuilder: FormBuilder) {
+    constructor(
+        private smartContract: SmartContractService,
+        private formBuilder: FormBuilder
+    ) {
         this.form = formBuilder.group({
             company: this.formBuilder.control('', Validators.required),
             game: this.formBuilder.control('', Validators.required),
-            price: this.formBuilder.control(null, Validators.required)
+            price: this.formBuilder.control(null, Validators.required),
         });
     }
 
     async mintLicence() {
-        if(!this.form.valid) {
+        if (!this.form.valid) {
             return;
         }
 

@@ -6,11 +6,10 @@ import { WEB3 } from '../web3.injection-token';
     name: 'weiToEther',
 })
 export class WeiToEtherPipe implements PipeTransform {
-
-    constructor(@Inject(WEB3) private web3: Web3){}
+    constructor(@Inject(WEB3) private web3: Web3) {}
 
     transform(value: number | undefined): string | undefined {
-        if(value == undefined) {
+        if (value == undefined) {
             return undefined;
         }
 

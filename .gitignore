@@ -56,3 +56,4 @@ cache
 artifacts
 
 .vscode
+dist

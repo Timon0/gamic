@@ -8,7 +8,7 @@ import { SmartContractService } from '../core/services/smart-contract.service';
     styleUrls: ['./my-licences-page.component.scss'],
 })
 export class MyLicencesPageComponent implements OnInit {
-    licences!: Licence[]
+    licences!: Licence[];
 
     constructor(private smartContractService: SmartContractService) {}
 

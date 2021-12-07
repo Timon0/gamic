@@ -1,7 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 struct Licence {
@@ -9,8 +8,8 @@ struct Licence {
     string game;
     string company;
     uint256 price;
+    address creator;
 }
-
 
 contract Gamic is ERC721 {
     uint256 private tokenCounter;
@@ -28,31 +27,31 @@ contract Gamic is ERC721 {
         uint price = prices[tokenId];
         require(price > 0, 'This token is not for sale');
         require(msg.value == price, 'Incorrect value');
-        
+
         address seller = ownerOf(tokenId);
         _safeTransfer(seller, msg.sender, tokenId, "");
-        prices[tokenId] = 0;
-        // not for sale anymore
-        // payable(seller).transfer(msg.value); // send the ETH to the seller
+        prices[tokenId] = 0; // not for sale anymore
+        payable(seller).transfer(msg.value);
     }
 
-    function mintLicence(string memory game, string memory company, uint price) public returns (uint256) {
+    function mintLicence(string memory game, string memory company, uint256 price) public returns (uint256) {
         uint256 newTokenId = tokenCounter;
         _safeMint(msg.sender, newTokenId);
         games[newTokenId] = game;
         companies[newTokenId] = company;
         prices[newTokenId] = price;
+        creator[newTokenId] = msg.sender;
         tokenCounter = tokenCounter + 1;
         return newTokenId;
     }
 
     function getLicesncesOfAddress(address userAddress) public view returns (Licence[] memory) {
-        uint balanceOfAddress = balanceOf(userAddress);
+        uint256 balanceOfAddress = balanceOf(userAddress);
         Licence[] memory userLicences = new Licence[](balanceOfAddress);
-        uint counter = 0;
-        for(uint i = 0; i < tokenCounter; i++) {
+        uint256 counter = 0;
+        for(uint256 i = 0; i < tokenCounter; i++) {
             if (ownerOf(i) == userAddress) {
-                userLicences[counter] = Licence(i, games[i], companies[i], prices[i]);
+                userLicences[counter] = Licence(i, games[i], companies[i], prices[i], creator[i]);
                 counter++;
             }
         }
@@ -64,7 +63,7 @@ contract Gamic is ERC721 {
         uint256 counter = 0;
         for(uint256 i = 0; i < tokenCounter; i++) {
             if (prices[i] > 0) {
-                licencesForSale[counter] = Licence(i, games[i], companies[i], prices[i]);
+                licencesForSale[counter] = Licence(i, games[i], companies[i], prices[i], creator[i]);
                 counter++;
             }
         }

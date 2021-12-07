@@ -9,14 +9,16 @@ import { MintLicencesPageComponent } from './mint-licences-page/mint-licences-pa
 import { ReactiveFormsModule } from '@angular/forms';
 import { WeiToEtherPipe } from './core/pipes/wei-to-ether.pipe';
 
-
 @NgModule({
-    declarations: [AppComponent, NavigationBarComponent, MyLicencesPageComponent, OverviewPageComponent, MintLicencesPageComponent, WeiToEtherPipe],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule
+    declarations: [
+        AppComponent,
+        NavigationBarComponent,
+        MyLicencesPageComponent,
+        OverviewPageComponent,
+        MintLicencesPageComponent,
+        WeiToEtherPipe,
     ],
+    imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
     providers: [],
     bootstrap: [AppComponent],
 })
