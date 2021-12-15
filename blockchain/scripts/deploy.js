@@ -23,12 +23,19 @@ async function main() {
 
 
   const [owner, addr1, addr2, addr3] = await hre.ethers.getSigners();
-  const createLicenceTx1 = await gamic.mintLicence("Memory", "Deployer", 1000000000000000, {value: 1000000000000});
-  await createLicenceTx1.wait();
-  const createLicenceTx2 = await gamic.mintLicence("Memory", "Deployer", 1000000000000000, {value: 1000000000000});
-  await createLicenceTx2.wait();
-}
 
+  // create Testdata
+  const createLicenceTx1 = await gamic.mintLicence("Memory", "Memory AG", 1000000000000000, {value: 1000000000000});
+  await createLicenceTx1.wait();
+  const createLicenceTx2 = await gamic.connect(addr3).mintLicence("Call of Duty", "Activision", 3000000000000000, {value: 3000000000000});
+  await createLicenceTx2.wait();
+  const createLicenceTx3 = await gamic.mintLicence("Grand Theft Auto V", "Rockstar Games", 9000000000000000, {value: 9000000000000});
+  await createLicenceTx3.wait();
+  const createLicenceTx4 = await gamic.mintLicence("Tetris", "Alexei Paschitnow", 4000000000000000, {value: 4000000000000});
+  await createLicenceTx4.wait();
+  const createLicenceTx5 = await gamic.mintLicence("Pac-Man", "Namco", 7000000000000000, {value: 7000000000000});
+  await createLicenceTx5.wait();
+}
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main()
